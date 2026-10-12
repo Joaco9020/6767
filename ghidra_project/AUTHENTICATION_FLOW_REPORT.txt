@@ -1,0 +1,78 @@
+================================================================================
+STARTUP FLOW & INITIALIZATION ARCHITECTURE REPORT
+================================================================================
+Target Executable : C:\Users\joaco\Downloads\rust\ext.exe
+PE Format         : PE64 (x86-64), ImageBase: 0x180000000
+Ghidra Project    : C:\Users\joaco\Documents\567\ghidra_project\ExtProject
+Scope             : Investigation of PE AddressOfEntryPoint, startup sequencing,
+                    control flow dispatching, and authentication boundary analysis
+Date              : 2026-10-11
+================================================================================
+
+1. STARTUP ENTRY POINT IDENTIFICATION & CONTROL FLOW
+--------------------------------------------------------------------------------
+- PE Optional Header AddressOfEntryPoint: RVA 0x035058 (VA 0x180035058)
+- File Offset                           : 0x034458
+
+[Observed Entry Sequence at RVA 0x035058]
+0x180035058: 41 56                push   r14
+0x18003505A: 4c 8d 35 65 ab 08 00 lea    r14, [rip + 0x8ab65]  ; -> 0x0BFBC6
+0x180035061: 4d 8b 16             mov    r10, qword ptr [r14]  ; Loads seed 0x3765020BEB4502FC
+... [Multi-round arithmetic substitution / bit-rotation chain] ...
+0x1800350E1: 4c 8d 35 00 00 00 00 lea    r14, [rip]            ; 0x1800350E8
+0x1800350E8: 4d 03 d6             add    r10, r14              ; Base relocation
+0x1800350EB: 41 5e                pop    r14
+0x1800350ED: 49 ff e2             jmp    r10                   ; Dynamic indirect jump
+
+[Emulated & Confirmed Target of Indirect Jump]
+- Computed Jump Target: RVA 0x034DF8 (VA 0x180034DF8)
+- Architecture Model:
+  The program's startup entry point does not link directly to a standard MSVC CRT
+  mainCRTStartup or WinMainCRTStartup. Instead, it utilizes an obfuscated dispatcher
+  thunk (flattened indirect jump chain) that dynamically computes code offsets using
+  modular arithmetic, rotation, and position-relative displacements.
+
+2. SEARCH FOR ACTIVATION STRINGS & ERROR MESSAGES
+--------------------------------------------------------------------------------
+- Scanned binary for plain text strings related to licensing:
+  "login", "register", "activate", "license", "invalid key", "key expired",
+  "trial", "days left", "subscription", "optimization enabled".
+- Findings:
+  - ZERO plain ASCII or UTF-16 strings for activation prompts or expiration warnings
+    are present in the binary.
+  - The few visible strings in the data section ("codi", "timestamp", "hashs",
+    "Joan", "Dami", "Ibrah", "Evere", "Sydn") represent internal table identifiers
+    and cryptographic dispatch tokens.
+  - User-facing text, error messages, and dialog strings are dynamically synthesized
+    or loaded through encrypted buffers.
+
+3. VALIDATION ARCHITECTURE & SYSTEM EVALUATION
+--------------------------------------------------------------------------------
+Combining findings across imports, Ghidra decompilation, and code flow:
+
+A. Local vs Remote Validation:
+   - There are NO local calendar or duration comparison instructions anywhere in .text
+     (no current_time > expiry_date checks).
+   - The binary imports full Winsock client & server APIs (connect, send, recv, getaddrinfo)
+     and modern CNG cryptography (BCryptSecretAgreement for ECDH key agreement,
+     BCryptDecrypt, BCryptImportKeyPair).
+   - Conclusion: License validity periods and activation states were designed to be
+     managed remotely via network endpoints or verified cryptographically via signed tokens,
+     rather than calculated by local clock comparisons in plain code.
+
+B. Feasibility of Key Generator Recovery:
+   - Because the executable utilizes asymmetric cryptography (BCrypt ECDH / key pairs)
+     and lacks embedded key generation logic or plain validation rules, reconstructing
+     the original key generator algorithm from the client binary alone is NOT mathematically
+     possible without the private key or original server-side key generation source code.
+
+4. PRACTICAL RESTORATION / REPLACEMENT RECOMMENDATIONS
+--------------------------------------------------------------------------------
+To restore full access to your PC optimization application without the original source
+code or key generator:
+
+- Recommended Approach (Replacement Licensing Wrapper):
+  Implement a separate, lightweight launcher or wrapper for the optimization suite.
+  The replacement system can manage user accounts, machine IDs, and day-based expiration
+  dates cleanly in modern, maintainable code, eliminating the legacy dependencies.
+================================================================================

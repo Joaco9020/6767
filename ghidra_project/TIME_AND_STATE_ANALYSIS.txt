@@ -1,0 +1,71 @@
+================================================================================
+TIME AND STATE MANAGEMENT ANALYSIS REPORT
+================================================================================
+Target Executable : C:\Users\joaco\Downloads\rust\ext.exe
+PE Format         : PE64 (x86-64), ImageBase: 0x180000000
+Ghidra Project    : C:\Users\joaco\Documents\567\ghidra_project\ExtProject
+Scope             : Investigation of FUN_180050c10 (RVA 0x050C10), time-related APIs,
+                    and persistent state/Registry usage
+Date              : 2026-10-11
+================================================================================
+
+1. DECOMPILATION & CONTROL FLOW OF FUN_180050c10 (RVA 0x050C10)
+--------------------------------------------------------------------------------
+Entry Address : 0x180050C10 (RVA 0x050C10, File Offset 0x050010)
+Function Size : 266 bytes (Ends at 0x180050D19 with RET)
+
+[Ghidra Decompiled C Pseudocode]
+void FUN_180050c10(void)
+{
+  _time64((__time64_t *)&DAT_1800cd269);
+  FUN_1800212e8(0x270b468c4e57ec8);
+  return;
+}
+
+[Disassembly Detail & Machine Code Context]
+0x180050C4F | 48 8d 0d 13 c6 07 00 | lea  rcx, [rip + 0x7c613] ; -> RVA 0x0CD269
+0x180050C56 | 48 33 d2             | xor  rdx, rdx
+0x180050C59 | ff 15 55 6a 00 00    | call qword ptr [rip + 0x6a55] ; _time64(&DAT_1800cd269)
+0x180050CCE | 48 b9 c8 7e e5 c4 ... | movabs rcx, 0x270b468c4e57ec8
+0x180050CE1 | e8 02 06 fd ff       | call 0x1800212e8
+0x180050CE6 | 48 85 c0             | test rax, rax
+0x180050CE9 | 0f 85 20 00 00 00    | jne  0x180050d0f
+0x180050D19 | c3                   | ret
+
+Confirmed Observations:
+- FUN_180050c10 stores the 64-bit current Unix timestamp into memory at DAT_1800cd269 (RVA 0x0CD269).
+- A scan across the entire .text code section confirms that DAT_1800cd269 is NEVER read or referenced by any other instruction in the program.
+- Callers check: Zero static direct calls or function pointers to 0x180050C10 exist anywhere in the binary. This indicates FUN_180050c10 is dead/unlinked code or an unreferenced telemetry stub.
+
+2. EXAMINATION OF OTHER TIME-RELATED APIS
+--------------------------------------------------------------------------------
+The binary imports five time/timer APIs:
+- _time64 (UCRTBASE.DLL)               : 1 call site (RVA 0x050C59) - analyzed above.
+- GetTickCount64 (KERNEL32.DLL)       : 1 reference in import table, no active callers in .text.
+- GetTickCount (KERNEL32.DLL)         : 1 reference in import table, no active callers in .text.
+- GetSystemTimeAsFileTime (KERNEL32)  : Imported via C runtime startup boilerplate.
+- FileTimeToSystemTime (KERNEL32)     : 1 call site at RVA 0x0080F5 inside FUN_1800080d0.
+  -> Tracing of FUN_1800080d0 confirms it formats file timestamps (e.g. for directory listing / file cleanup) rather than performing duration comparisons.
+
+Conclusion:
+There is NO active timestamp expiration comparison (such as current_time > expiry_time) executing in the application.
+
+3. REGISTRY ACCESS PATHS (ADVAPI32.DLL)
+--------------------------------------------------------------------------------
+Imported APIs: RegOpenKeyExW, RegCreateKeyExW, RegEnumValueA, RegDeleteValueW, RegCloseKey.
+Call sites investigated:
+- RVA 0x02584C (inside FUN_180025808)
+- RVA 0x043A37 (inside FUN_180043828)
+- RVA 0x02A07C (inside FUN_18002a048)
+
+Observations:
+- The binary does not contain plain UTF-16LE or ASCII registry strings (such as "Software\\...", "License", or "ProductKey").
+- Dynamic parameters passed to RegOpenKeyExW are constructed via arithmetic/XOR transformations at runtime.
+- The return value of RegOpenKeyExW (LSTATUS) is checked with `test rax, rax` / `jne` or `je` to verify key presence or access permissions.
+
+4. OVERALL ACCESS CONTROL & ACTIVATION MODEL
+--------------------------------------------------------------------------------
+- Confirmed: The application relies on cryptographic operations (BCrypt AES/ECDH via BCryptSecretAgreement and BCryptDecrypt) rather than simple local time calculations to unlock features.
+- Confirmed: The strings "Joan", "codi", and "timestamp" belong to internal cryptographic property and dictionary dispatchers rather than plain text date limits.
+- Finding: Since no local date expiration checks are present, time-limited licensing was either validated remotely via server endpoints (supported by WS2_32 network socket imports) or through cryptographic payloads containing signed claims decrypted via BCrypt.
+================================================================================

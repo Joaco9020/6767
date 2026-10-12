@@ -1,0 +1,950 @@
+================================================================================
+               STATIC ANALYSIS & CODE COMPREHENSION REPORT                      
+================================================================================
+Program Name : ext.exe
+Image Base   : 0x180000000
+Executable   : C:\Users\joaco\Downloads\rust\ext.exe
+Date         : Sun Oct 11 18:35:36 GMT-03:00 2026
+================================================================================
+
+### 1. IMPORTED APIS & EXTERNAL REFERENCES ###
+
+Import: DefWindowProcA [USER32.DLL] - 2 references
+    Called from 0x57044 in unknown
+    Called from 0x6675 in FUN_1800065e8
+Import: MoveWindow [USER32.DLL] - 3 references
+    Called from 0x5704c in unknown
+    Called from 0x47bd in FUN_180004628
+    Called from 0x5831 in FUN_1800057a8
+Import: GetWindowRect [USER32.DLL] - 2 references
+    Called from 0x57054 in unknown
+    Called from 0x516b5 in FUN_180051628
+Import: RegisterClassExA [USER32.DLL] - 3 references
+    Called from 0x5705c in unknown
+    Called from 0x55cc2 in FUN_180055c88
+    Called from 0x1b746 in FUN_18001b710
+Import: GetWindowTextA [USER32.DLL] - 4 references
+    Called from 0x57064 in unknown
+    Called from 0x4224b in FUN_180042218
+    Called from 0x3734e in FUN_180037278
+    Called from 0x10584 in FUN_180010548
+Import: SendMessageA [USER32.DLL] - 7 references
+    Called from 0x5706c in unknown
+    Called from 0x3804b in FUN_180038008
+    Called from 0x49a12 in FUN_180049968
+    Called from 0x37beb in FUN_180037bb8
+    Called from 0x3ed1c in FUN_18003ec38
+Import: FindWindowA [USER32.DLL] - 2 references
+    Called from 0x57074 in unknown
+    Called from 0x48355 in FUN_180048338
+Import: PostMessageA [USER32.DLL] - 4 references
+    Called from 0x5707c in unknown
+    Called from 0x55940 in FUN_1800558f0
+    Called from 0x17213 in FUN_1800171b8
+    Called from 0x95ac in FUN_1800093e8
+Import: MessageBoxW [USER32.DLL] - 4 references
+    Called from 0x57084 in unknown
+    Called from 0x4a234 in FUN_18004a1f8
+    Called from 0x33bc1 in FUN_180033a68
+    Called from 0xccdb in FUN_18000cc98
+Import: GetCursorPos [USER32.DLL] - 2 references
+    Called from 0x5708c in unknown
+    Called from 0x3a5d4 in FUN_18003a538
+Import: GetClientRect [USER32.DLL] - 3 references
+    Called from 0x57094 in unknown
+    Called from 0xdb20 in FUN_18000dae0
+    Called from 0x37601 in FUN_1800375a8
+Import: TranslateMessage [USER32.DLL] - 4 references
+    Called from 0x5709c in unknown
+    Called from 0x3981 in FUN_180003958
+    Called from 0x4b2c0 in FUN_18004b210
+    Called from 0x7301 in FUN_1800072b0
+Import: SetWindowPos [USER32.DLL] - 6 references
+    Called from 0x570a4 in unknown
+    Called from 0x42a64 in FUN_180042a18
+    Called from 0x8b2e in FUN_180008ad8
+    Called from 0x49b70 in FUN_180049ac8
+    Called from 0x1d0c in FUN_180001bf8
+Import: SetWindowTextA [USER32.DLL] - 4 references
+    Called from 0x570ac in unknown
+    Called from 0x2c0c1 in FUN_18002c070
+    Called from 0x401a6 in FUN_180040140
+    Called from 0x3ea0a in FUN_18003e9c0
+Import: EnumWindows [USER32.DLL] - 4 references
+    Called from 0x570b4 in unknown
+    Called from 0x40cde in FUN_180040bf0
+    Called from 0x4adf0 in FUN_18004ad38
+    Called from 0x25f5 in FUN_1800025d8
+Import: NtQuerySystemInformation [NTDLL.DLL] - 2 references
+    Called from 0x570c4 in unknown
+    Called from 0x4c811 in FUN_18004c7d8
+Import: NtProtectVirtualMemory [NTDLL.DLL] - 3 references
+    Called from 0x570cc in unknown
+    Called from 0x29287 in FUN_180029230
+    Called from 0xd3bc in FUN_18000d358
+Import: RtlEqualUnicodeString [NTDLL.DLL] - 3 references
+    Called from 0x570d4 in unknown
+    Called from 0x47203 in FUN_180047008
+    Called from 0x2f3e in FUN_180002d80
+Import: RtlZeroMemory [NTDLL.DLL] - 3 references
+    Called from 0x570dc in unknown
+    Called from 0x32919 in FUN_180032828
+    Called from 0x6641 in FUN_1800065e8
+Import: NtClose [NTDLL.DLL] - 4 references
+    Called from 0x570e4 in unknown
+    Called from 0x39d4e in FUN_180039cb8
+    Called from 0x34d48 in FUN_180034d10
+    Called from 0x1c068 in FUN_18001bff0
+Import: RtlGetVersion [NTDLL.DLL] - 3 references
+    Called from 0x570ec in unknown
+    Called from 0x2ac49 in FUN_18002ab88
+    Called from 0x33dc6 in FUN_180033d70
+Import: NtOpenProcess [NTDLL.DLL] - 2 references
+    Called from 0x570f4 in unknown
+    Called from 0xa810 in FUN_18000a770
+Import: RtlFreeAnsiString [NTDLL.DLL] - 3 references
+    Called from 0x570fc in unknown
+    Called from 0x52cbb in FUN_180052be8
+    Called from 0x2c5cd in FUN_18002c518
+Import: NtFlushInstructionCache [NTDLL.DLL] - 2 references
+    Called from 0x57104 in unknown
+    Called from 0x1c466 in FUN_18001c438
+Import: NtOpenFile [NTDLL.DLL] - 2 references
+    Called from 0x5710c in unknown
+    Called from 0x1833b in FUN_1800182d0
+Import: RtlCompareMemory [NTDLL.DLL] - 4 references
+    Called from 0x57114 in unknown
+    Called from 0x29a03 in FUN_180029998
+    Called from 0x317b8 in FUN_180031578
+    Called from 0x22ec7 in FUN_180022df0
+Import: NtSuspendThread [NTDLL.DLL] - 4 references
+    Called from 0x5711c in unknown
+    Called from 0x27d7d in FUN_180027d38
+    Called from 0x545b5 in FUN_180054558
+    Called from 0x18631 in FUN_1800185d8
+Import: ShellExecuteExA [SHELL32.DLL] - 1 references
+    Called from 0x5712c in unknown
+Import: fclose [MSVCRT.DLL] - 4 references
+    Called from 0x5713c in unknown
+    Called from 0x23b5 in FUN_180002368
+    Called from 0xcde7 in FUN_18000cd30
+    Called from 0xb6c8 in FUN_18000b5d8
+Import: _aligned_free [MSVCRT.DLL] - 3 references
+    Called from 0x57144 in unknown
+    Called from 0xc506 in FUN_18000c480
+    Called from 0x404e4 in FUN_1800404c0
+Import: _beginthreadex [MSVCRT.DLL] - 3 references
+    Called from 0x5714c in unknown
+    Called from 0x3da6 in FUN_180003c70
+    Called from 0x40e75 in FUN_180040d68
+Import: _strnicmp [MSVCRT.DLL] - 3 references
+    Called from 0x57154 in unknown
+    Called from 0x4a05c in FUN_18004a020
+    Called from 0x4f754 in FUN_18004f700
+Import: fflush [MSVCRT.DLL] - 5 references
+    Called from 0x5715c in unknown
+    Called from 0x4793c in FUN_180047858
+    Called from 0x4ba3e in FUN_18004b968
+    Called from 0x44cc3 in FUN_180044c80
+    Called from 0x2461f in FUN_1800245c0
+Import: _wfopen [MSVCRT.DLL] - 3 references
+    Called from 0x57164 in unknown
+    Called from 0x529d0 in FUN_180052880
+    Called from 0x2451 in FUN_180002420
+Import: malloc [MSVCRT.DLL] - 5 references
+    Called from 0x5716c in unknown
+    Called from 0x27380 in FUN_180027330
+    Called from 0x3448e in FUN_1800343b0
+    Called from 0x164bb in FUN_180016490
+    Called from 0x3b835 in FUN_18003b780
+Import: _aligned_malloc [MSVCRT.DLL] - 3 references
+    Called from 0x57174 in unknown
+    Called from 0x3830f in FUN_180038218
+    Called from 0x44b12 in FUN_180044ad8
+Import: free [MSVCRT.DLL] - 3 references
+    Called from 0x5717c in unknown
+    Called from 0x3c8bb in FUN_18003c808
+    Called from 0x1948 in FUN_180001820
+Import: realloc [MSVCRT.DLL] - 5 references
+    Called from 0x57184 in unknown
+    Called from 0x2e101 in FUN_18002e060
+    Called from 0x4daaf in FUN_18004da28
+    Called from 0xdd2a in FUN_18000dcf8
+    Called from 0x34857 in FUN_1800347e0
+Import: _endthreadex [MSVCRT.DLL] - 2 references
+    Called from 0x5718c in unknown
+    Called from 0x3e974 in FUN_18003e718
+Import: GetTokenInformation [ADVAPI32.DLL] - 1 references
+    Called from 0x5719c in unknown
+Import: OpenProcessToken [ADVAPI32.DLL] - 1 references
+    Called from 0x571a4 in unknown
+Import: htons [WS2_32.DLL] - 1 references
+    Called from 0x571b4 in unknown
+Import: getaddrinfo [WS2_32.DLL] - 2 references
+    Called from 0x571bc in unknown
+    Called from 0xb41b in FUN_18000b3b8
+Import: WSASocketA [WS2_32.DLL] - 2 references
+    Called from 0x571c4 in unknown
+    Called from 0x142da in FUN_180014298
+Import: WSACleanup [WS2_32.DLL] - 5 references
+    Called from 0x571cc in unknown
+    Called from 0x2fae2 in FUN_18002fa18
+    Called from 0x9324 in FUN_180009218
+    Called from 0x40c56 in FUN_180040bf0
+    Called from 0x15e15 in FUN_180015de0
+Import: WSAGetLastError [WS2_32.DLL] - 3 references
+    Called from 0x571d4 in unknown
+    Called from 0x17175 in FUN_1800170d8
+    Called from 0x25137 in FUN_1800250d0
+Import: accept [WS2_32.DLL] - 2 references
+    Called from 0x571dc in unknown
+    Called from 0x298cb in FUN_180029798
+Import: gethostname [WS2_32.DLL] - 3 references
+    Called from 0x571e4 in unknown
+    Called from 0x33c09 in FUN_180033a68
+    Called from 0x8380 in FUN_180008330
+Import: recv [WS2_32.DLL] - 3 references
+    Called from 0x571ec in unknown
+    Called from 0x496f3 in FUN_1800495c0
+    Called from 0x37753 in FUN_180037718
+Import: WSACleanup [WS2_32.DLL] - 1 references
+    Called from 0x571f4 in unknown
+Import: closesocket [WS2_32.DLL] - 1 references
+    Called from 0x571fc in unknown
+Import: send [WS2_32.DLL] - 1 references
+    Called from 0x57204 in unknown
+Import: closesocket [WS2_32.DLL] - 3 references
+    Called from 0x5720c in unknown
+    Called from 0x2b2ae in FUN_18002b1b0
+    Called from 0x18f25 in FUN_180018ee8
+Import: listen [WS2_32.DLL] - 3 references
+    Called from 0x57214 in unknown
+    Called from 0xb8c2 in FUN_18000b860
+    Called from 0x94b2 in FUN_1800093e8
+Import: connect [WS2_32.DLL] - 1 references
+    Called from 0x5721c in unknown
+Import: WSAGetLastError [WS2_32.DLL] - 1 references
+    Called from 0x57224 in unknown
+Import: recvfrom [WS2_32.DLL] - 3 references
+    Called from 0x5722c in unknown
+    Called from 0x43abf in FUN_180043a90
+    Called from 0x4df36 in FUN_18004def0
+Import: socket [WS2_32.DLL] - 1 references
+    Called from 0x57234 in unknown
+Import: WSASocketW [WS2_32.DLL] - 4 references
+    Called from 0x5723c in unknown
+    Called from 0x13310 in FUN_1800132a0
+    Called from 0x4fed8 in FUN_18004fe48
+    Called from 0x3b79c in FUN_18003b780
+Import: freeaddrinfo [WS2_32.DLL] - 2 references
+    Called from 0x5724c in unknown
+    Called from 0x42ae6 in FUN_180042ab8
+Import: WSAStartup [WS2_32.DLL] - 2 references
+    Called from 0x57254 in unknown
+    Called from 0x4d195 in FUN_18004d0d8
+Import: recv [WS2_32.DLL] - 1 references
+    Called from 0x5725c in unknown
+Import: WSAStartup [WS2_32.DLL] - 1 references
+    Called from 0x57264 in unknown
+Import: inet_addr [WS2_32.DLL] - 3 references
+    Called from 0x5726c in unknown
+    Called from 0x9248 in FUN_180009218
+    Called from 0xdc90 in FUN_18000dc58
+Import: EnterCriticalSection [KERNEL32.DLL] - 1 references
+    Called from 0x5727c in unknown
+Import: GetTickCount64 [KERNEL32.DLL] - 2 references
+    Called from 0x57284 in unknown
+    Called from 0x333ea in FUN_1800333a8
+Import: FlsAlloc [KERNEL32.DLL] - 1 references
+    Called from 0x5728c in unknown
+Import: FileTimeToSystemTime [KERNEL32.DLL] - 3 references
+    Called from 0x57294 in unknown
+    Called from 0x80f5 in FUN_1800080d0
+    Called from 0x3db3c in FUN_18003da10
+Import: SetLastError [KERNEL32.DLL] - 1 references
+    Called from 0x5729c in unknown
+Import: GetCurrentDirectoryW [KERNEL32.DLL] - 9 references
+    Called from 0x572a4 in unknown
+    Called from 0x3a3b2 in FUN_18003a238
+    Called from 0x2ac4 in FUN_180002a88
+    Called from 0x1b0b in FUN_180001ac0
+    Called from 0x4d59f in FUN_18004d580
+Import: GetStdHandle [KERNEL32.DLL] - 1 references
+    Called from 0x572ac in unknown
+Import: CreateFileW [KERNEL32.DLL] - 1 references
+    Called from 0x572b4 in unknown
+Import: DeleteCriticalSection [KERNEL32.DLL] - 1 references
+    Called from 0x572bc in unknown
+Import: FlsGetValue [KERNEL32.DLL] - 1 references
+    Called from 0x572c4 in unknown
+Import: LoadLibraryExW [KERNEL32.DLL] - 1 references
+    Called from 0x572cc in unknown
+Import: GetExitCodeProcess [KERNEL32.DLL] - 5 references
+    Called from 0x572d4 in unknown
+    Called from 0x9129 in FUN_1800090d0
+    Called from 0x43451 in FUN_1800433f8
+    Called from 0x46666 in FUN_180046540
+    Called from 0x3098 in FUN_180002fc8
+Import: HeapReAlloc [KERNEL32.DLL] - 1 references
+    Called from 0x572dc in unknown
+Import: SetEnvironmentVariableW [KERNEL32.DLL] - 3 references
+    Called from 0x572e4 in unknown
+    Called from 0x29acb in FUN_180029a20
+    Called from 0x1a007 in FUN_180019fb0
+Import: IsProcessorFeaturePresent [KERNEL32.DLL] - 1 references
+    Called from 0x572ec in unknown
+Import: HeapAlloc [KERNEL32.DLL] - 2 references
+    Called from 0x572f4 in unknown
+    Called from 0x48eaf in FUN_180048dd8
+Import: InitializeCriticalSectionEx [KERNEL32.DLL] - 1 references
+    Called from 0x572fc in unknown
+Import: VirtualAlloc [KERNEL32.DLL] - 2 references
+    Called from 0x57304 in unknown
+    Called from 0x3695c in FUN_180036940
+Import: CreateProcessW [KERNEL32.DLL] - 5 references
+    Called from 0x5730c in unknown
+    Called from 0x130f3 in FUN_180013030
+    Called from 0x410b2 in FUN_180041050
+    Called from 0x3e95 in FUN_180003c70
+    Called from 0x11f5d in FUN_180011f10
+Import: GetTempPathW [KERNEL32.DLL] - 2 references
+    Called from 0x57314 in unknown
+    Called from 0x19683 in FUN_1800195f8
+Import: MoveFileW [KERNEL32.DLL] - 3 references
+    Called from 0x5731c in unknown
+    Called from 0x63fc in FUN_1800063d0
+    Called from 0x6fe5 in FUN_180006f90
+Import: FindClose [KERNEL32.DLL] - 5 references
+    Called from 0x57324 in unknown
+    Called from 0x2594f in FUN_180025808
+    Called from 0x43b0c in FUN_180043a90
+    Called from 0x16ae1 in FUN_180016ac0
+    Called from 0x6dca in FUN_180006d88
+Import: EncodePointer [KERNEL32.DLL] - 1 references
+    Called from 0x5732c in unknown
+Import: TlsSetValue [KERNEL32.DLL] - 1 references
+    Called from 0x57334 in unknown
+Import: GetCurrentThreadId [KERNEL32.DLL] - 3 references
+    Called from 0x5733c in unknown
+    Called from 0x1edad in FUN_18001ecc8
+    Called from 0x115f3 in FUN_180011520
+Import: SetFilePointerEx [KERNEL32.DLL] - 1 references
+    Called from 0x57344 in unknown
+Import: GetFullPathNameA [KERNEL32.DLL] - 5 references
+    Called from 0x5734c in unknown
+    Called from 0x4d320 in FUN_18004d208
+    Called from 0x2de05 in FUN_18002dd78
+    Called from 0x2b645 in FUN_18002b600
+    Called from 0x3500a in FUN_180034fc0
+Import: GetCommandLineW [KERNEL32.DLL] - 1 references
+    Called from 0x57354 in unknown
+Import: GetCPInfo [KERNEL32.DLL] - 1 references
+    Called from 0x5735c in unknown
+Import: SetUnhandledExceptionFilter [KERNEL32.DLL] - 1 references
+    Called from 0x57364 in unknown
+Import: Toolhelp32ReadProcessMemory [KERNEL32.DLL] - 4 references
+    Called from 0x5736c in unknown
+    Called from 0x4691a in FUN_180046858
+    Called from 0xdea7 in FUN_18000de70
+    Called from 0xffd0 in FUN_18000ff18
+Import: IsValidCodePage [KERNEL32.DLL] - 1 references
+    Called from 0x57374 in unknown
+Import: GetStartupInfoW [KERNEL32.DLL] - 1 references
+    Called from 0x5737c in unknown
+Import: LeaveCriticalSection [KERNEL32.DLL] - 1 references
+    Called from 0x57384 in unknown
+Import: GetConsoleOutputCP [KERNEL32.DLL] - 1 references
+    Called from 0x5738c in unknown
+Import: OpenMutexA [KERNEL32.DLL] - 2 references
+    Called from 0x57394 in unknown
+    Called from 0x4f30c in FUN_18004f258
+Import: GetConsoleMode [KERNEL32.DLL] - 1 references
+    Called from 0x5739c in unknown
+Import: GetFileAttributesExW [KERNEL32.DLL] - 1 references
+    Called from 0x573a4 in unknown
+Import: VirtualAllocEx [KERNEL32.DLL] - 3 references
+    Called from 0x573ac in unknown
+    Called from 0x239fd in FUN_1800239c0
+    Called from 0x34bb1 in FUN_180034b60
+Import: GetProcAddress [KERNEL32.DLL] - 1 references
+    Called from 0x573b4 in unknown
+Import: GetModuleHandleExW [KERNEL32.DLL] - 1 references
+    Called from 0x573bc in unknown
+Import: VirtualProtect [KERNEL32.DLL] - 2 references
+    Called from 0x573c4 in unknown
+    Called from 0x38208 in FUN_1800381e0
+Import: CompareStringW [KERNEL32.DLL] - 1 references
+    Called from 0x573cc in unknown
+Import: WriteConsoleW [KERNEL32.DLL] - 1 references
+    Called from 0x573d4 in unknown
+Import: ExitProcess [KERNEL32.DLL] - 1 references
+    Called from 0x573dc in unknown
+Import: HeapFree [KERNEL32.DLL] - 1 references
+    Called from 0x573e4 in unknown
+Import: GetFileType [KERNEL32.DLL] - 1 references
+    Called from 0x573ec in unknown
+Import: GetCurrentProcessId [KERNEL32.DLL] - 3 references
+    Called from 0x573f4 in unknown
+    Called from 0x56131 in FUN_1800560a8
+    Called from 0x5000e in FUN_18004ffe0
+Import: FindNextFileA [KERNEL32.DLL] - 4 references
+    Called from 0x573fc in unknown
+    Called from 0x38893 in FUN_180038848
+    Called from 0xc0c7 in FUN_18000c040
+    Called from 0x456e3 in FUN_180045650
+Import: RtlPcToFileHeader [KERNEL32.DLL] - 1 references
+    Called from 0x57404 in unknown
+Import: SetEndOfFile [KERNEL32.DLL] - 1 references
+    Called from 0x5740c in unknown
+Import: RaiseException [KERNEL32.DLL] - 1 references
+    Called from 0x57414 in unknown
+Import: GetSystemTimeAsFileTime [KERNEL32.DLL] - 1 references
+    Called from 0x5741c in unknown
+Import: FreeEnvironmentStringsW [KERNEL32.DLL] - 1 references
+    Called from 0x57424 in unknown
+Import: InitializeSListHead [KERNEL32.DLL] - 1 references
+    Called from 0x5742c in unknown
+Import: OpenFileMappingW [KERNEL32.DLL] - 3 references
+    Called from 0x57434 in unknown
+    Called from 0x38262 in FUN_180038218
+    Called from 0x476fe in FUN_1800475d0
+Import: GetProcessHeap [KERNEL32.DLL] - 1 references
+    Called from 0x5743c in unknown
+Import: VirtualQuery [KERNEL32.DLL] - 4 references
+    Called from 0x57444 in unknown
+    Called from 0x373c1 in FUN_180037278
+    Called from 0x3370c in FUN_180033638
+    Called from 0x701d in FUN_180006f90
+Import: FindFirstFileExW [KERNEL32.DLL] - 1 references
+    Called from 0x5744c in unknown
+Import: TlsAlloc [KERNEL32.DLL] - 1 references
+    Called from 0x57454 in unknown
+Import: GetModuleHandleW [KERNEL32.DLL] - 2 references
+    Called from 0x5745c in unknown
+    Called from 0x2353c in FUN_180023468
+Import: CloseHandle [KERNEL32.DLL] - 1 references
+    Called from 0x57464 in unknown
+Import: GetModuleHandleA [KERNEL32.DLL] - 1 references
+    Called from 0x5746c in unknown
+Import: WideCharToMultiByte [KERNEL32.DLL] - 1 references
+    Called from 0x57474 in unknown
+Import: InterlockedFlushSList [KERNEL32.DLL] - 1 references
+    Called from 0x5747c in unknown
+Import: ReadFile [KERNEL32.DLL] - 1 references
+    Called from 0x57484 in unknown
+Import: GetCommandLineA [KERNEL32.DLL] - 3 references
+    Called from 0x5748c in unknown
+    Called from 0x21616 in FUN_1800214a8
+    Called from 0x257a7 in FUN_1800255f8
+Import: SetStdHandle [KERNEL32.DLL] - 1 references
+    Called from 0x57494 in unknown
+Import: LoadLibraryA [KERNEL32.DLL] - 1 references
+    Called from 0x5749c in unknown
+Import: GetTimeZoneInformation [KERNEL32.DLL] - 2 references
+    Called from 0x574a4 in unknown
+    Called from 0x3910b in FUN_180038fe8
+Import: MultiByteToWideChar [KERNEL32.DLL] - 1 references
+    Called from 0x574ac in unknown
+Import: WaitForSingleObject [KERNEL32.DLL] - 1 references
+    Called from 0x574b4 in unknown
+Import: ReleaseMutex [KERNEL32.DLL] - 2 references
+    Called from 0x574bc in unknown
+    Called from 0x470e8 in FUN_180047008
+Import: RtlLookupFunctionEntry [KERNEL32.DLL] - 1 references
+    Called from 0x574c4 in unknown
+Import: GetOEMCP [KERNEL32.DLL] - 1 references
+    Called from 0x574cc in unknown
+Import: CreateEventA [KERNEL32.DLL] - 4 references
+    Called from 0x574d4 in unknown
+    Called from 0x3badd in FUN_18003ba30
+    Called from 0x3e371 in FUN_18003e2f8
+    Called from 0x13d26 in FUN_180013ce0
+Import: FreeLibrary [KERNEL32.DLL] - 1 references
+    Called from 0x574dc in unknown
+Import: SetConsoleTextAttribute [KERNEL32.DLL] - 1 references
+    Called from 0x574e4 in unknown
+Import: RtlUnwindEx [KERNEL32.DLL] - 1 references
+    Called from 0x574ec in unknown
+Import: WaitForSingleObjectEx [KERNEL32.DLL] - 3 references
+    Called from 0x574f4 in unknown
+    Called from 0x2ca5c in FUN_18002c988
+    Called from 0xc5de in FUN_18000c480
+Import: GetModuleFileNameA [KERNEL32.DLL] - 1 references
+    Called from 0x574fc in unknown
+Import: GetSystemDirectoryW [KERNEL32.DLL] - 3 references
+    Called from 0x57504 in unknown
+    Called from 0xa1f8 in FUN_18000a188
+    Called from 0xf808 in FUN_18000f788
+Import: TlsGetValue [KERNEL32.DLL] - 1 references
+    Called from 0x5750c in unknown
+Import: GetEnvironmentStringsW [KERNEL32.DLL] - 1 references
+    Called from 0x57514 in unknown
+Import: GetLastError [KERNEL32.DLL] - 1 references
+    Called from 0x5751c in unknown
+Import: FlushFileBuffers [KERNEL32.DLL] - 4 references
+    Called from 0x57524 in unknown
+    Called from 0x696a in FUN_180006930
+    Called from 0x30454 in FUN_1800303e0
+    Called from 0xd603 in FUN_18000d5d0
+Import: FindFirstFileA [KERNEL32.DLL] - 23 references
+    Called from 0x5752c in unknown
+    Called from 0x500e7 in FUN_180050070
+    Called from 0x5388c in FUN_180053868
+    Called from 0x1203 in FUN_1800011a0
+    Called from 0x1d2b3 in FUN_18001d1f0
+Import: ReadConsoleW [KERNEL32.DLL] - 1 references
+    Called from 0x57534 in unknown
+Import: GetModuleFileNameW [KERNEL32.DLL] - 1 references
+    Called from 0x5753c in unknown
+Import: Process32NextW [KERNEL32.DLL] - 5 references
+    Called from 0x57544 in unknown
+    Called from 0x3887f in FUN_180038848
+    Called from 0x4f39e in FUN_18004f340
+    Called from 0x4c50 in FUN_180004c38
+    Called from 0xd4fe in FUN_18000d4a0
+Import: InitializeCriticalSectionAndSpinCount [KERNEL32.DLL] - 1 references
+    Called from 0x5754c in unknown
+Import: UnhandledExceptionFilter [KERNEL32.DLL] - 1 references
+    Called from 0x57554 in unknown
+Import: HeapSize [KERNEL32.DLL] - 1 references
+    Called from 0x5755c in unknown
+Import: AllocConsole [KERNEL32.DLL] - 1 references
+    Called from 0x57564 in unknown
+Import: SetCurrentDirectoryA [KERNEL32.DLL] - 2 references
+    Called from 0x5756c in unknown
+    Called from 0x143b6 in FUN_180014350
+Import: GetTickCount [KERNEL32.DLL] - 1 references
+    Called from 0x57574 in unknown
+Import: Sleep [KERNEL32.DLL] - 2 references
+    Called from 0x5757c in unknown
+    Called from 0xfca2 in FUN_18000fc50
+Import: FindNextFileW [KERNEL32.DLL] - 1 references
+    Called from 0x57584 in unknown
+Import: TerminateProcess [KERNEL32.DLL] - 1 references
+    Called from 0x5758c in unknown
+Import: GetStringTypeW [KERNEL32.DLL] - 1 references
+    Called from 0x57594 in unknown
+Import: CreateProcessA [KERNEL32.DLL] - 3 references
+    Called from 0x5759c in unknown
+    Called from 0xf8ec in FUN_18000f8a8
+    Called from 0x30ed in FUN_180002fc8
+Import: Thread32Next [KERNEL32.DLL] - 5 references
+    Called from 0x575a4 in unknown
+    Called from 0x6ab3 in FUN_180006a80
+    Called from 0x3cc63 in FUN_18003cbd8
+    Called from 0x37f0e in FUN_180037dd8
+    Called from 0x297cc in FUN_180029798
+Import: LCMapStringW [KERNEL32.DLL] - 1 references
+    Called from 0x575ac in unknown
+Import: IsDebuggerPresent [KERNEL32.DLL] - 1 references
+    Called from 0x575b4 in unknown
+Import: GetCurrentProcess [KERNEL32.DLL] - 1 references
+    Called from 0x575bc in unknown
+Import: TlsFree [KERNEL32.DLL] - 1 references
+    Called from 0x575c4 in unknown
+Import: CreateToolhelp32Snapshot [KERNEL32.DLL] - 44 references
+    Called from 0x575d4 in unknown
+    Called from 0x408b6 in FUN_180040868
+    Called from 0x320c6 in FUN_180032098
+    Called from 0x2b0d0 in FUN_18002b0a0
+    Called from 0x4a96c in FUN_18004a910
+Import: GetFileSizeEx [KERNEL32.DLL] - 1 references
+    Called from 0x575dc in unknown
+Import: FlsSetValue [KERNEL32.DLL] - 1 references
+    Called from 0x575e4 in unknown
+Import: RtlVirtualUnwind [KERNEL32.DLL] - 1 references
+    Called from 0x575ec in unknown
+Import: VirtualFree [KERNEL32.DLL] - 3 references
+    Called from 0x575f4 in unknown
+    Called from 0xa12d in FUN_18000a090
+    Called from 0x48ffd in FUN_180048f78
+Import: GetACP [KERNEL32.DLL] - 1 references
+    Called from 0x575fc in unknown
+Import: RemoveDirectoryA [KERNEL32.DLL] - 143 references
+    Called from 0x57604 in unknown
+    Called from 0x1b855 in FUN_18001b818
+    Called from 0x1a8c7 in FUN_18001a818
+    Called from 0x3d862 in FUN_18003d830
+    Called from 0x1a94 in FUN_180001820
+Import: FlsFree [KERNEL32.DLL] - 1 references
+    Called from 0x5760c in unknown
+Import: SetEnvironmentVariableA [KERNEL32.DLL] - 2 references
+    Called from 0x57614 in unknown
+    Called from 0x14a74 in FUN_180014958
+Import: WriteFile [KERNEL32.DLL] - 1 references
+    Called from 0x5761c in unknown
+Import: BCryptDestroyKey [BCRYPT.DLL] - 5 references
+    Called from 0x5762c in unknown
+    Called from 0xa105 in FUN_18000a090
+    Called from 0x2f990 in FUN_18002f930
+    Called from 0x4cb8 in FUN_180004c88
+    Called from 0x24021 in FUN_180023fd8
+Import: BCryptSecretAgreement [BCRYPT.DLL] - 2 references
+    Called from 0x57634 in unknown
+    Called from 0x9c8c in FUN_180009c38
+Import: BCryptDestroyHash [BCRYPT.DLL] - 2 references
+    Called from 0x5763c in unknown
+    Called from 0x57e8 in FUN_1800057a8
+Import: BCryptGetProperty [BCRYPT.DLL] - 6 references
+    Called from 0x57644 in unknown
+    Called from 0x48a49 in FUN_1800489f0
+    Called from 0x42b2e in FUN_180042ab8
+    Called from 0x18671 in FUN_1800185d8
+    Called from 0xb75e in FUN_18000b5d8
+Import: BCryptCreateHash [BCRYPT.DLL] - 3 references
+    Called from 0x5764c in unknown
+    Called from 0x1b628 in FUN_18001b5a8
+    Called from 0x53800 in FUN_1800537a8
+Import: BCryptExportKey [BCRYPT.DLL] - 3 references
+    Called from 0x57654 in unknown
+    Called from 0x24e38 in FUN_180024cf0
+    Called from 0x13e98 in FUN_180013e20
+Import: BCryptImportKeyPair [BCRYPT.DLL] - 2 references
+    Called from 0x5765c in unknown
+    Called from 0x39a49 in FUN_1800397d0
+Import: BCryptSetProperty [BCRYPT.DLL] - 2 references
+    Called from 0x57664 in unknown
+    Called from 0x13c19 in FUN_180013ab8
+Import: BCryptDecrypt [BCRYPT.DLL] - 6 references
+    Called from 0x5766c in unknown
+    Called from 0x50114 in FUN_180050070
+    Called from 0x46361 in FUN_180046340
+    Called from 0x26bbf in FUN_180026b60
+    Called from 0x216ca in FUN_1800214a8
+Import: BCryptGenRandom [BCRYPT.DLL] - 5 references
+    Called from 0x57674 in unknown
+    Called from 0x4d98f in FUN_18004d968
+    Called from 0xba05 in FUN_18000b9e0
+    Called from 0x1a2fc in FUN_18001a2e0
+    Called from 0x26d33 in FUN_180026b60
+Import: BCryptHashData [BCRYPT.DLL] - 3 references
+    Called from 0x5767c in unknown
+    Called from 0x561bd in FUN_180056178
+    Called from 0x159b in FUN_1800014a8
+Import: strchr [UCRTBASE.DLL] - 2 references
+    Called from 0x5768c in unknown
+    Called from 0x1abe3 in FUN_18001a9c8
+Import: wcsncpy_s [UCRTBASE.DLL] - 2 references
+    Called from 0x57694 in unknown
+    Called from 0x30c02 in FUN_180030b80
+Import: _aligned_malloc [UCRTBASE.DLL] - 3 references
+    Called from 0x5769c in unknown
+    Called from 0x3e504 in FUN_18003e488
+    Called from 0x29ff4 in FUN_180029ef8
+Import: _set_errno [UCRTBASE.DLL] - 2 references
+    Called from 0x576a4 in unknown
+    Called from 0x46444 in FUN_1800463b8
+Import: memcpy [UCRTBASE.DLL] - 4 references
+    Called from 0x576ac in unknown
+    Called from 0x3697a in FUN_180036940
+    Called from 0x184e8 in FUN_180018498
+    Called from 0x8f4c in FUN_180008e80
+Import: _time64 [UCRTBASE.DLL] - 2 references
+    Called from 0x576b4 in unknown
+    Called from 0x50c59 in FUN_180050c10
+Import: _aligned_free [UCRTBASE.DLL] - 3 references
+    Called from 0x576bc in unknown
+    Called from 0x4a2c in FUN_1800049f8
+    Called from 0x3420 in FUN_180003388
+Import: strcpy [UCRTBASE.DLL] - 2 references
+    Called from 0x576c4 in unknown
+    Called from 0x2fdce in FUN_18002fc10
+Import: _get_errno [UCRTBASE.DLL] - 2 references
+    Called from 0x576cc in unknown
+    Called from 0x2c57b in FUN_18002c518
+Import: strcmp [UCRTBASE.DLL] - 4 references
+    Called from 0x576d4 in unknown
+    Called from 0x13e1 in FUN_1800011a0
+    Called from 0x54d80 in FUN_180054c88
+    Called from 0xa5fb in FUN_18000a528
+Import: strncpy_s [UCRTBASE.DLL] - 3 references
+    Called from 0x576dc in unknown
+    Called from 0x339be in FUN_180033870
+    Called from 0x52443 in FUN_180052408
+Import: _ftelli64 [UCRTBASE.DLL] - 5 references
+    Called from 0x576e4 in unknown
+    Called from 0x193cb in FUN_180019148
+    Called from 0x559b9 in FUN_180055980
+    Called from 0x38550 in FUN_180038430
+    Called from 0x3f55f in FUN_18003f520
+Import: CloseServiceHandle [ADVAPI32.DLL] - 3 references
+    Called from 0x576f4 in unknown
+    Called from 0x3e4b5 in FUN_18003e488
+    Called from 0x358d8 in FUN_180035770
+Import: RegCreateKeyExW [ADVAPI32.DLL] - 4 references
+    Called from 0x576fc in unknown
+    Called from 0x44072 in FUN_180044030
+    Called from 0x30648 in FUN_180030548
+    Called from 0x38f37 in FUN_180038ea8
+Import: CryptCreateHash [ADVAPI32.DLL] - 2 references
+    Called from 0x57704 in unknown
+    Called from 0x2cb94 in FUN_18002cb40
+Import: ControlService [ADVAPI32.DLL] - 2 references
+    Called from 0x5770c in unknown
+    Called from 0x8606 in FUN_1800085a0
+Import: CryptDecrypt [ADVAPI32.DLL] - 4 references
+    Called from 0x57714 in unknown
+    Called from 0x78bf in FUN_180007888
+    Called from 0x7d25 in FUN_180007c80
+    Called from 0x9f86 in FUN_180009f58
+Import: RegCloseKey [ADVAPI32.DLL] - 2 references
+    Called from 0x5771c in unknown
+    Called from 0x4c87f in FUN_18004c840
+Import: RegOpenKeyExW [ADVAPI32.DLL] - 73 references
+    Called from 0x57724 in unknown
+    Called from 0x2584c in FUN_180025808
+    Called from 0x38140 in FUN_180038008
+    Called from 0x43a37 in FUN_180043828
+    Called from 0x2a07c in FUN_18002a048
+Import: CryptEncrypt [ADVAPI32.DLL] - 2 references
+    Called from 0x5772c in unknown
+    Called from 0x2fb66 in FUN_18002fa18
+Import: RegDeleteKeyA [ADVAPI32.DLL] - 2 references
+    Called from 0x57734 in unknown
+    Called from 0x536b1 in FUN_1800535b8
+Import: OpenServiceW [ADVAPI32.DLL] - 2 references
+    Called from 0x5773c in unknown
+    Called from 0x1dc3 in FUN_180001d88
+Import: GetNamedSecurityInfoW [ADVAPI32.DLL] - 2 references
+    Called from 0x57744 in unknown
+    Called from 0x1488e in FUN_180014810
+Import: GetUserNameA [ADVAPI32.DLL] - 2 references
+    Called from 0x5774c in unknown
+    Called from 0x1661c in FUN_180016590
+Import: RegFlushKey [ADVAPI32.DLL] - 3 references
+    Called from 0x57754 in unknown
+    Called from 0x2b279 in FUN_18002b1b0
+    Called from 0x3bc65 in FUN_18003bc28
+Import: CryptReleaseContext [ADVAPI32.DLL] - 2 references
+    Called from 0x5775c in unknown
+    Called from 0x15331 in FUN_180015300
+Import: RegOpenKeyW [ADVAPI32.DLL] - 13 references
+    Called from 0x57764 in unknown
+    Called from 0x26897 in FUN_180026810
+    Called from 0x895e in FUN_180008918
+    Called from 0x15980 in FUN_180015908
+    Called from 0x4fafa in FUN_18004fad8
+Import: RegEnumValueA [ADVAPI32.DLL] - 5 references
+    Called from 0x5776c in unknown
+    Called from 0x4f8bd in FUN_18004f868
+    Called from 0x3d9a6 in FUN_18003d940
+    Called from 0x52aa5 in FUN_180052a60
+    Called from 0x41004 in FUN_180040fa0
+Import: RegDeleteValueW [ADVAPI32.DLL] - 4 references
+    Called from 0x57774 in unknown
+    Called from 0x3019e in FUN_180030158
+    Called from 0x9ae6 in FUN_180009a60
+    Called from 0xbdec in FUN_18000bdb0
+
+### 2. DECOMPILED TARGET FUNCTIONS & CALL TREES ###
+
+--------------------------------------------------------------------------------
+Target RVA: 0x3EED8 (VA: 18003eed8)
+Function Name : FUN_18003eed8
+Entry Point   : 18003eed8
+Body Range    : [[18003eed8, 18003f18e]]
+Callers Count : 1
+  <- Called by: FUN_180044ad8 at 180044ad8
+Callees Count : 6
+  -> Calls    : FindFirstFileA at EXTERNAL:00000098
+  -> Calls    : FUN_180022f90 at 180022f90
+  -> Calls    : FUN_1800329c0 at 1800329c0
+  -> Calls    : FUN_18000b218 at 18000b218
+  -> Calls    : FUN_180016490 at 180016490
+  -> Calls    : FUN_18000b330 at 18000b330
+
+--- Decompiled C Pseudocode ---
+
+/* WARNING: Type propagation algorithm not settling */
+
+undefined8 FUN_18003eed8(void)
+
+{
+  FUN_18000b218();
+  FindFirstFileA(&DAT_1800d1d16,(LPWIN32_FIND_DATAA)0x1882df8bb7e94f72);
+  FUN_180022f90();
+  FUN_180016490();
+  FUN_1800329c0();
+  FUN_18000b330();
+  return 0;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x44AD8 (VA: 180044ad8)
+Function Name : FUN_180044ad8
+Entry Point   : 180044ad8
+Body Range    : [[180044ad8, 180044be8]]
+Callers Count : 1
+  <- Called by: FUN_180046b78 at 180046b78
+Callees Count : 3
+  -> Calls    : _aligned_malloc at EXTERNAL:00000024
+  -> Calls    : FUN_18003eed8 at 18003eed8
+  -> Calls    : FUN_18000c040 at 18000c040
+
+--- Decompiled C Pseudocode ---
+
+ulonglong FUN_180044ad8(void)
+
+{
+  longlong lVar1;
+  undefined *puVar2;
+  longlong in_R10;
+  longlong unaff_R13;
+  undefined1 local_28 [32];
+  
+  _aligned_malloc((size_t)local_28,in_R10 * unaff_R13);
+  FUN_18000c040();
+  puVar2 = &DAT_1800c56fe;
+  lVar1 = FUN_18003eed8();
+  if (lVar1 != 0) {
+    puVar2 = puVar2 + 4;
+  }
+  return (ulonglong)puVar2 ^ 0x65ec18e1;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x482C0 (VA: 1800482c0)
+Function Name : FUN_1800482c0
+Entry Point   : 1800482c0
+Body Range    : [[1800482c0, 180048332]]
+Callers Count : 0
+Callees Count : 1
+  -> Calls    : FUN_18004f458 at 18004f458
+
+--- Decompiled C Pseudocode ---
+
+void FUN_1800482c0(void)
+
+{
+  FUN_18004f458();
+  return;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x489F0 (VA: 1800489f0)
+Function Name : FUN_1800489f0
+Entry Point   : 1800489f0
+Body Range    : [[1800489f0, 180048aad]]
+Callers Count : 1
+  <- Called by: FUN_180018cd0 at 180018cd0
+Callees Count : 1
+  -> Calls    : BCryptGetProperty at EXTERNAL:000000ba
+
+--- Decompiled C Pseudocode ---
+
+longlong FUN_1800489f0(void)
+
+{
+  NTSTATUS NVar1;
+  undefined4 extraout_var;
+  longlong lVar2;
+  longlong lVar3;
+  ULONG unaff_ESI;
+  ULONG *unaff_R13;
+  
+  lVar3 = -0x5e504ffd95754fcf;
+  NVar1 = BCryptGetProperty((BCRYPT_HANDLE)0x0,(LPCWSTR)0xa1afb0026a8ab031,&DAT_1800c2682,0x800cda4a
+                            ,unaff_R13,unaff_ESI);
+  lVar2 = CONCAT44(extraout_var,NVar1);
+  if (lVar2 == 0) {
+    lVar2 = 7;
+  }
+  return lVar2 + lVar3;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x18370 (VA: 180018370)
+Function Name : FUN_180018370
+Entry Point   : 180018370
+Body Range    : [[180018370, 18001840f]]
+Callers Count : 1
+  <- Called by: FUN_180001fc0 at 180001fc0
+Callees Count : 1
+  -> Calls    : FUN_180004250 at 180004250
+
+--- Decompiled C Pseudocode ---
+
+ulonglong FUN_180018370(void)
+
+{
+  ulonglong uVar1;
+  ulonglong uVar2;
+  longlong unaff_RDI;
+  ulonglong uVar3;
+  
+  uVar3 = 0;
+  uVar1 = FUN_180004250(0x1a013e2c9d877082,&DAT_1800c63d6,0x1800d3ae3);
+  uVar2 = 0;
+  if (uVar1 != 0) {
+    uVar2 = uVar1 & (uVar3 | (unaff_RDI >> 4) - 5U);
+  }
+  return uVar2;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x4F458 (VA: 18004f458)
+Function Name : FUN_18004f458
+Entry Point   : 18004f458
+Body Range    : [[18004f458, 18004f4bb]]
+Callers Count : 2
+  <- Called by: FUN_180005dd0 at 180005dd0
+  <- Called by: FUN_1800482c0 at 1800482c0
+Callees Count : 0
+
+--- Decompiled C Pseudocode ---
+
+void FUN_18004f458(void)
+
+{
+  return;
+}
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Target RVA: 0x41210 (VA: 180041210)
+Function Name : FUN_180041210
+Entry Point   : 180041210
+Body Range    : [[180041210, 180041292]]
+Callers Count : 0
+Callees Count : 0
+
+--- Decompiled C Pseudocode ---
+
+void FUN_180041210(void)
+
+{
+  return;
+}
+
+
+--------------------------------------------------------------------------------
+
+### 3. VERIFICATION OF KEY STATIC STRINGS & LABELS ###
+
+String Data: "timestamp" at VA 1800c0278 (RVA 0xc0278) - 1 references
+    Referenced by 0x48a02 (FUN_1800489f0)
+String Data: "hashs" at VA 1800d008d (RVA 0xd008d) - 1 references
+    Referenced by 0x1837a (FUN_180018370)
+String Data: "Ibrah" at VA 1800d4c4a (RVA 0xd4c4a) - 2 references
+    Referenced by 0x42365 (FUN_180042350)
+    Referenced by 0xd5e7c (non-function)
+String Data: "Evere" at VA 1800d4c78 (RVA 0xd4c78) - 2 references
+    Referenced by 0x46183 (FUN_180046168)
+    Referenced by 0xd6614 (non-function)
